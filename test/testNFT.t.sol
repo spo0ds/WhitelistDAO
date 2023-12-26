@@ -69,17 +69,16 @@ contract testNFT is Test {
         assertEq(oxy.getTokenId(), 0);
         vm.startPrank(address(2));
         oxy.safeMint();
-        uint256 tokenId = oxy.getTokenId();
-        assertEq(oxy.getTokenId(), tokenId);
+        assertEq(oxy.getTokenId(), 1);
+        oxy.burn(0);
         vm.stopPrank();
     }
 
     function testFail_WhenTokenIdIsNotPresent() external {
         vm.startPrank(address(2));
-        oxy.safeMint();
         uint256 prevTokenId = oxy.getTokenId();
+        oxy.safeMint();
         oxy.burn(prevTokenId);
-        vm.expectRevert();
         oxy.safeMint();
         oxy.burn(prevTokenId);
         vm.stopPrank();
