@@ -86,14 +86,23 @@ contract testNFT is Test {
 
     function test_WhenANon_ownerCallsBurn() external {
         // it should revert with NTNFTNotNFTOwner error
+        vm.startPrank(address(1));
+        uint256 prevTokenId = oxy.getTokenId();
+        oxy.safeMint();
+        vm.startPrank(address(2));
+        vm.expectRevert(NTNFT__NotNFTOwner.selector);
+        oxy.burn(prevTokenId);
+        vm.stopPrank();
     }
 
-    function test_RevertWhen_TheOwnerCallsBurnInPaused() external givenTheContractIsPaused {
+    function test_RevertWhen_TheOwnerCallsBurnInPaused()
+        external
+        givenTheContractIsPaused
+    {
         vm.startPrank(address(3));
         vm.expectRevert();
         oxy.burn(0);
         vm.stopPrank();
-        // it should revert
     }
 
     function test_RevertWhen_NftOwnerCallTransfer() external {
@@ -102,7 +111,6 @@ contract testNFT is Test {
         vm.expectRevert(NTNFT__NftNotTransferrable.selector);
         oxy.transferFrom(address(0xabc), address(4), 0);
         vm.stopPrank();
-        // it should revert
     }
 
     function test_RevertWhen_NftOwnerCallApproval() external {
