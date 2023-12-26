@@ -1,0 +1,26 @@
+testNFT
+├── when with correct initial owner
+│   └── it deployed the contract
+├── when a owner calls pause
+│   └── it should pause all token and voting actions.
+├── when a non-owner calls pause
+│   └── it should revert
+├── given the contract is not paused
+│   └── when a user calls safeMint
+│       └── it should mint an NFT Successfully
+├── when a user calls safeMint twice
+│   └── it should revert with NTNFTCanOnlyMintOnce error
+├── when a user calls safeMint in paused state
+│   └── it should revert
+├── when a user burn their nft
+│   └── it should burn the NFT Successfully
+├── when a non-owner calls burn
+│   └── it should revert with NTNFTNotNFTOwner error
+├── given the contract is paused
+│   └── when the owner calls burn
+│       └── it should revert
+├── when nft owner call transfer
+│   └── it should revert
+└── when nft owner call approval
+    └── it should revert
+   
