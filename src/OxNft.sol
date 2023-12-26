@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity 0.8.23;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
@@ -108,7 +108,7 @@ contract Oxy is
         revert NTNFT__NftNotTransferrable();
     }
 
-    function getTokenId() public view returns (uint256){ 
+    function getTokenId() public view returns (uint256) {
         return _nextTokenId;
     }
 }
