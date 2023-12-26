@@ -84,23 +84,32 @@ contract testNFT is Test {
         vm.stopPrank();
     }
 
-    // function test_WhenANon_ownerCallsBurn() external {
-    //     // it should revert with NTNFTNotNFTOwner error
-    // }
+    function test_WhenANon_ownerCallsBurn() external {
+        // it should revert with NTNFTNotNFTOwner error
+    }
 
-    // modifier givenTheContractIsPaused() {
-    //     _;
-    // }
+    function test_RevertWhen_TheOwnerCallsBurnInPaused() external givenTheContractIsPaused {
+        vm.startPrank(address(3));
+        vm.expectRevert();
+        oxy.burn(0);
+        vm.stopPrank();
+        // it should revert
+    }
 
-    // function test_RevertWhen_TheOwnerCallsBurn() external givenTheContractIsPaused {
-    //     // it should revert
-    // }
+    function test_RevertWhen_NftOwnerCallTransfer() external {
+        vm.startPrank(address(0xabc));
+        oxy.safeMint();
+        vm.expectRevert(NTNFT__NftNotTransferrable.selector);
+        oxy.transferFrom(address(0xabc), address(4), 0);
+        vm.stopPrank();
+        // it should revert
+    }
 
-    // function test_RevertWhen_NftOwnerCallTransfer() external {
-    //     // it should revert
-    // }
-
-    // function test_RevertWhen_NftOwnerCallApproval() external {
-    //     // it should revert
-    // }
+    function test_RevertWhen_NftOwnerCallApproval() external {
+        vm.startPrank(address(0xbcd));
+        oxy.safeMint();
+        vm.expectRevert(NTNFT__NftNotTransferrable.selector);
+        oxy.isApprovedForAll(address(0xbcd), address(2));
+        vm.stopPrank();
+    }
 }
