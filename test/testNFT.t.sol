@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.23;
 
-import {Oxy} from "../src/OxNft.sol";
+import {OxNft} from "../src/OxNft.sol";
 import {Test} from "forge-std/Test.sol";
 
 error NTNFT__CanOnlyMintOnce();
@@ -9,11 +9,11 @@ error NTNFT__NotNFTOwner();
 error NTNFT__NftNotTransferrable();
 
 contract testNFT is Test {
-    Oxy public oxy;
+    OxNft public oxy;
     address owner = address(1);
 
     function setUp() external {
-        oxy = new Oxy(owner);
+        oxy = new OxNft(owner);
     }
 
     function test_WhenAOwnerCallsPause_and_UnPause() external {
