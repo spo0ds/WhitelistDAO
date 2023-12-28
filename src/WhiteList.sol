@@ -4,7 +4,7 @@ pragma solidity 0.8.23;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Whitelist is Ownable {
+contract WhiteList is Ownable {
     mapping(address => bool) private whitelistedAddresses;
 
     constructor() Ownable(msg.sender) {}

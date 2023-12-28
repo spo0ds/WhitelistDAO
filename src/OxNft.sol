@@ -12,7 +12,7 @@ error NTNFT__CanOnlyMintOnce();
 error NTNFT__NotNFTOwner();
 error NTNFT__NftNotTransferrable();
 
-contract Oxy is
+contract OxNft is
     ERC721,
     ERC721Pausable,
     Ownable,

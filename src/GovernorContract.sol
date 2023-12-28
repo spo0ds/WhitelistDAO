@@ -23,7 +23,7 @@ contract GovernorContract is
         Governor("MyGovernor")
         GovernorSettings(7200 /* 1 day */, 50400 /* 1 week */, 0)
         GovernorVotes(_token)
-        GovernorVotesQuorumFraction(25)
+        GovernorVotesQuorumFraction(4)
         GovernorTimelockControl(_timelock)
     {}
 
